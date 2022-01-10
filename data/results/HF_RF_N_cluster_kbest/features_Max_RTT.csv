@@ -1,0 +1,6 @@
+,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+0,Mean_E2EL,Max_E2EL,VarCoeff_E2EL,Mean_C2CL,SD_Betweenness,Min_Betweenness,SD_BetweennessCentrality,Max_BetweennessCentrality,Mean_Closeness_weighted,Skew_Closeness_weighted,Mean_S2SL,,,,,,,,,,
+1,Mean_E2EL,Min_E2EL,VarCoeff_E2EL,Mode_E2EL,Kurt_NodeEccentricity,SD_Degree,Skew_Degree,Min_Degree,VarCoeff_Degree,Min_Betweenness,Median_Betweenness,SD_BetweennessCentrality,Max_BetweennessCentrality,SD_Closeness,VarCoeff_Closeness,Mean_Closeness_weighted,Kurt_Farness,Kurt_HopCount,SD_NodeExpansion50,Skew_NodeExpansion50,Mean_S2SL
+2,Mean_E2EL,Skew_E2EL,Max_E2EL,VarCoeff_E2EL,Mode_E2EL,Skew_C2SL,SD_Betweenness,Min_Betweenness,SD_BetweennessCentrality,Max_BetweennessCentrality,VarCoeff_Closeness,Mean_Closeness_weighted,Skew_Closeness_weighted,SD_Farness,SD_NodeExpansion25,,,,,,
+3,Mean_E2EL,Max_E2EL,Mean_Degree,SD_BetweennessCentrality,Mean_Closeness_weighted,,,,,,,,,,,,,,,,
+4,Mean_E2EL,Max_E2EL,VarCoeff_E2EL,Mode_E2EL,Min_Degree,Min_DegreeCentrality,SD_Betweenness,SD_BetweennessCentrality,Max_BetweennessCentrality,VarCoeff_Closeness,Mean_Closeness_weighted,SD_Farness,Kurt_HopCount,SD_NodeExpansion25,Skew_NodeExpansion50,Mean_S2SL,,,,,

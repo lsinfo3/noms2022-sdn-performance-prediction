@@ -1,0 +1,6 @@
+,0,1,2,3,4,5,6,7,8,9
+0,TimeOut,Controllers,Switches,SwitchMappingEntropy,SD_Betweenness,Skew_Betweenness,,,,
+1,TimeOut,Controllers,Switches,Skew_Degree,VarCoeff_Degree,Mean_NodeExpansion25,,,,
+2,TimeOut,Controllers,Switches,Links,SwitchMappingEntropy,Kurt_E2EL,Skew_Degree,Min_DegreeCentrality,SD_Betweenness,Skew_Betweenness
+3,TimeOut,Controllers,Switches,SwitchMappingEntropy,SD_Betweenness,,,,,
+4,TimeOut,Controllers,Switches,VarCoeff_Degree,Min_DegreeCentrality,SD_Betweenness,,,,
