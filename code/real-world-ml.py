@@ -48,33 +48,35 @@ class MulticollinearityFilter(BaseEstimator, TransformerMixin):
 archs = ["HF"]
 #archs = ["KN"]
 pipes = ["baseline","cluster_kbest","kbest_cluster","pca","pca_kbest","kbest_pca"]
-#pipes = ["baseline"]
 scenarios = ["N"]
-models = ["DT","AB","RF"]
+#models = ["DT","AB","RF"]
+models = ["DT"]
 metrics = ["Mean_RTT","Max_RTT", "Mean_SyncTraffic", "Max_SyncTraffic", "Mean_ControlPlaneTraffic", "Max_ControlPlaneTraffic"]
-#metrics = ["Max_RTT"]
+
 z = itertools.product(archs, scenarios, models, pipes, metrics)
 for arch, scenario, model, pipe, metric in z:
     
     if (arch == "KN"):
-        df = pd.read_csv('../data/data_KN_fixed.csv', sep=";").fillna(value=-1)
+        df = pd.read_csv('../data/data_KN.csv', sep=";").fillna(value=-1)
     if (arch == "HF"):
-        df = pd.read_csv('../data/data_HF_fixed.csv', sep=";").fillna(value=-1)
+        df = pd.read_csv('../data/data_HF.csv', sep=";").fillna(value=-1)
         df = df[df.columns.drop(list(df.filter(regex='C2RL')))]
        
-    results_path = "../data/results_fixed/"+arch+"_new_"+model+"_"+ scenario+"_"+pipe
+    results_path = "../data/results_test/"+arch+"_new_"+model+"_"+ scenario+"_"+pipe
     Path(results_path).mkdir(parents=True, exist_ok=True)
      
+    
+    # Group the same network from different years also together... otherwise it may be unfair, cause they stay very similar
     if (scenario == "NC"):
         df['Network'].replace(to_replace='[0-9]*', value='',inplace=True,regex=True) 
         df['Network'].replace(to_replace='KentmanFeb|KentmanJan', value='Kentman',inplace=True,regex=True) 
-        groups =   df["Network"] + "-" +df["Configuration"].astype(str)
+        groups =  df["Network"] + "-" +df["Configuration"].astype(str)
         
     if (scenario == "N"):
 
         df['Network'].replace(to_replace='[0-9]*', value='',inplace=True,regex=True) 
         df['Network'].replace(to_replace='KentmanFeb|KentmanJan', value='Kentman',inplace=True,regex=True) 
-        groups =   df["Network"]
+        groups =  df["Network"]
 
     y = df[metric]
     X = df.drop(df.iloc[:, 0:10], axis=1)
@@ -205,10 +207,9 @@ for arch, scenario, model, pipe, metric in z:
             for index in featureIndices_kbest.tolist():      
                 sel_list.append(retained_df.columns[featureIndices_filter[index]])
             outer_features.append(sel_list)
-            
-        Path(results_path+"/backup").mkdir(parents=True, exist_ok=True)
-        
-        # Uncomment if backup of ML model and train/test targets is wanted
+                    
+        # Uncomment if backup of ML model and train/test targets is wanted        
+        # Path(results_path+"/backup").mkdir(parents=True, exist_ok=True)
         # filename = results_path+"/backup"+"/model_"+  str(outer_fold) +"_" +metric+".sav"
         # np.savetxt(results_path+"/backup""/ytest_" + str(outer_fold) +"_"+metric+".csv", y_test, delimiter=",")
         # np.savetxt(results_path+"/backup""/ypred_" + str(outer_fold) +"_"+metric+".csv", y_pred, delimiter=",")

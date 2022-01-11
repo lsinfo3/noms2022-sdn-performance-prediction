@@ -4,7 +4,6 @@ Created on Fri Jun 25 09:57:27 2021
 
 @author: katha
 """
-from collections import defaultdict
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -20,12 +19,14 @@ rc('text', usetex=True)
 
 colors_test = sns.cubehelix_palette(start=-1, rot=-1, light=.75, dark=0.4,n_colors=6)[::-1]  
 colors_as_hex = [colors.rgb2hex(c) for c in colors_test]
-df = pd.read_csv('../data/data_KN_fixed.csv', sep=";").fillna(value=-1)
+df = pd.read_csv('../data/data_KN.csv', sep=";").fillna(value=-1)
 df = df.loc[:,df.apply(pd.Series.nunique) != 1]
 X = df.drop(df.iloc[:, 0:10], axis=1)
 
 X2 = df.drop(df.iloc[:, 0:10], axis=1)
 fig, (ax1) = plt.subplots(1, figsize=(12, 3))
+
+# adapted from https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html
 corr = spearmanr(X2).correlation
 corr_linkage = hierarchy.ward(corr)
  

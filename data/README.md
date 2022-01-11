@@ -44,7 +44,7 @@
 		- *Assortativity* Measure  of if high-degree nodes attach to other high-degree nodes or low-degree nodes
 		- *CentralPointDominance* Measure of maximum betweenness/centralization of a graph (_not_ equivalent to maximum *Betweenness*)
 		- *VertexConnectivity* equivalent to maximum *NodeDisjointPaths*
-		- *VertexPersistence*  equivalent to maximum *NodeDisjointPaths* >= *Diameter *
+		- *VertexPersistence*  equivalent to maximum *NodeDisjointPaths* >= *Diameter*
 		- *EdgeConnectivity* equivalent to maximum *EdgeDistinctPaths* 
 		- *VertexConnectivity* equivalent to maximum *EdgeDistinctPaths*  >= *Diameter* 
 		- *GlobalClusteringCoefficient* equivalent to average *LocalClusteringCoefficient*

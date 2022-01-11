@@ -18,24 +18,30 @@ from pathlib import Path
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 
-df = pd.read_csv('../data/data_HF_fixed.csv', sep=";").fillna(value=-1)
-df = df[df.columns.drop(list(df.filter(regex='C2RL')))]
+arch = "HF"
+if (arch == "KN"):
+    df = pd.read_csv('../data/data_KN.csv', sep=";").fillna(value=-1)
+if (arch == "HF"):
+    df = pd.read_csv('../data/data_HF.csv', sep=";").fillna(value=-1)
+    df = df[df.columns.drop(list(df.filter(regex='C2RL')))]
 
 df['Real']=1
 
 df['Network'].replace(to_replace='[0-9]*', value='',inplace=True,regex=True) 
 df['Network'].replace(to_replace='KentmanFeb|KentmanJan', value='Kentman',inplace=True,regex=True) 
 
-df_rnd = pd.read_csv('../data/data_rnd_HF_fixed.csv', sep=";").fillna(value=-1)
-df_rnd = df_rnd[df_rnd.columns.drop(list(df_rnd.filter(regex='C2RL')))]
+
+if (arch == "KN"):
+    df_rnd = pd.read_csv('../data/data_rnd_KN.csv', sep=";").fillna(value=-1)
+if (arch == "HF"):
+    df_rnd = pd.read_csv('../data/data_rnd_HF.csv', sep=";").fillna(value=-1)
+    df_rnd = df_rnd[df_rnd.columns.drop(list(df_rnd.filter(regex='C2RL')))]
 
 df_rnd['Real']=0
 
 df = pd.concat([df_rnd, df])
 
 df = df.loc[:,df.apply(pd.Series.nunique) != 1]
-
-df['Network'].replace(to_replace='HF|KN', value='',inplace=True,regex=True) 
 
 groups =   df["Network"]
 cv_outer = GroupKFold(n_splits = 5)
@@ -55,7 +61,7 @@ outer_pc_count = list()
 outer_fold = 1
 for train_inds, test_inds in cv_outer.split(X, y, groups):
 
-    results_path = "../data/results_fixed/hf_classif"
+    results_path = "../data/results/"+arch+"_CLASSIF"
     Path(results_path).mkdir(parents=True, exist_ok=True)
     X_train, X_test, y_train, y_test = X.iloc[train_inds], X.iloc[test_inds], y.iloc[train_inds], y.iloc[test_inds]
     base_estimator = RandomForestClassifier(random_state=0)
@@ -122,10 +128,7 @@ for train_inds, test_inds in cv_outer.split(X, y, groups):
     features = []
     for i in range(topx):
         features.insert(0,X_selected[indices[i]])
-    
-    features = [feature.replace('protcol', 'protocol') for feature in features] # fix spelling error
-    features = [feature.replace('between', 'btw') for feature in features] 
-    
+
     f = plt.figure(figsize=(4,3.0))
     plt.barh(features, importances[indices[range(topx)]][::-1],zorder=2, edgecolor='black',color='#0d52a8', align='center')
 

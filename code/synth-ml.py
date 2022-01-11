@@ -22,11 +22,20 @@ import itertools
 from pathlib import Path
 import pickle
 
-df = pd.read_csv('../data/data_HF_fixed.csv', sep=";").fillna(value=-1)
-df = df[df.columns.drop(list(df.filter(regex='C2RL')))]
+arch = "HF"
+if (arch == "KN"):
+    df = pd.read_csv('../data/data_KN.csv', sep=";").fillna(value=-1)
+if (arch == "HF"):
+    df = pd.read_csv('../data/data_HF.csv', sep=";").fillna(value=-1)
+    df = df[df.columns.drop(list(df.filter(regex='C2RL')))]
 
-df_rnd = pd.read_csv('../data/data_rnd_HF_fixed.csv', sep=";").fillna(value=-1)
-df_rnd = df_rnd[df_rnd.columns.drop(list(df_rnd.filter(regex='C2RL')))]
+
+if (arch == "KN"):
+    df_rnd = pd.read_csv('../data/data_rnd_KN.csv', sep=";").fillna(value=-1)
+if (arch == "HF"):
+    df_rnd = pd.read_csv('../data/data_rnd_HF.csv', sep=";").fillna(value=-1)
+    df_rnd = df_rnd[df_rnd.columns.drop(list(df_rnd.filter(regex='C2RL')))]
+
 
 pipe = "baseline"
 scenarios = ["N"]
@@ -44,7 +53,7 @@ for scenario, model, metric in z:
     c1 = X_test.columns
     c2 = X_train.columns
 
-    results_path = "../data/results_fixed/hf_rnd_"+model+"_"+ scenario+"_"+pipe
+    results_path = "../data/results/"+arch+"_RND_"+model+"_"+ scenario+"_"+pipe
     Path(results_path).mkdir(parents=True, exist_ok=True)
     if (scenario == "NC"):
         groups =   df_rnd["Network"] + "-" +df_rnd["Configuration"].astype(str)
@@ -112,12 +121,13 @@ for scenario, model, metric in z:
     
     importances = my_regressor.named_steps['kbest'].scores_[featureIndices_kbest]
     outer_features_importance.append(importances)
-
-    Path(results_path+"/backup").mkdir(parents=True, exist_ok=True)
-    filename = results_path+"/backup"+"/model_"+  str(outer_fold) +"_" +metric+".sav"
-    np.savetxt(results_path+"/backup""/ytest_" + str(outer_fold) +"_"+metric+".csv", y_test, delimiter=",")
-    np.savetxt(results_path+"/backup""/ypred_" + str(outer_fold) +"_"+metric+".csv", y_pred, delimiter=",")
-    pickle.dump(my_regressor, open(filename, 'wb'))
+    
+    # Uncomment if backup of ML model and train/test targets is wanted    
+    # Path(results_path+"/backup").mkdir(parents=True, exist_ok=True)
+    # filename = results_path+"/backup"+"/model_"+  str(outer_fold) +"_" +metric+".sav"
+    # np.savetxt(results_path+"/backup""/ytest_" + str(outer_fold) +"_"+metric+".csv", y_test, delimiter=",")
+    # np.savetxt(results_path+"/backup""/ypred_" + str(outer_fold) +"_"+metric+".csv", y_pred, delimiter=",")
+    # pickle.dump(my_regressor, open(filename, 'wb'))
     
     np.savetxt(results_path+"/mape_"+metric+".csv", outer_mape, delimiter=",")
     np.savetxt(results_path+"/mae_"+metric+".csv", outer_mae, delimiter=",")
@@ -136,4 +146,3 @@ for scenario, model, metric in z:
         
     outer_features_importance_df = pd.DataFrame(outer_features_importance)
     outer_features_importance_df.to_csv(results_path+"/featureimportances_"+metric+".csv")
-    #outer_features_importance_df.to_csv("../data/results/kn_"+model+"_"+ scenario+"/featureimportances_"+metric+".csv")
