@@ -57,13 +57,6 @@ for model,scenario, metric, pipeline in z:
     result = np.loadtxt("../data/results/"+arch+"_RND_"+model+"_"+ scenario+pipeline+"/srcc_"+metric+".csv")
     results_srcc = results_srcc.append({"metric" : metric, "model" : model, "scenario" : scenario, "pipeline" : pipeline.replace("_", " "), "srcc" : result}, ignore_index=True)
 
-# results_agg_nmae = results_nmae.groupby(["metric","model","scenario","pipeline"]).mean()
-# results_agg_mape = results_mape.groupby(["metric","model","scenario","pipeline"]).mean()
-# results_agg_rmse = results_rmse.groupby(["metric","model","scenario","pipeline"]).mean()
-# results_agg_pcc = results_pcc.groupby(["metric","model","scenario","pipeline"]).mean()
-# results_agg_srcc = results_srcc.groupby(["metric","model","scenario","pipeline"]).mean()
-# results_agg_mae = results_mae.groupby(["metric","model","scenario","pipeline"]).mean()
-
 results_agg3 = results_rmse.merge(results_mape, how='left', on=["metric","model","scenario","pipeline"])
 results_agg2 = results_agg3.merge(results_nmae, how='left', on=["metric","model","scenario","pipeline"]) 
 results_agg1 = results_agg2.merge(results_pcc, how='left', on=["metric","model","scenario","pipeline"])
@@ -118,7 +111,7 @@ for model,scenario, metric, pipeline in z:
     for subresult in result:
         results_srcc = results_srcc.append({"metric" : metric, "model" : model, "scenario" : scenario, "pipeline" : pipeline.replace("_", " "), "srcc" : subresult}, ignore_index=True)
 
-    
+# Average over five outer folds is needed here, we do not have an outer CV for the synthetic networks though
 results_agg_nmae = results_nmae.groupby(["metric","model","scenario","pipeline"]).mean()
 results_agg_mape = results_mape.groupby(["metric","model","scenario","pipeline"]).mean()
 results_agg_rmse = results_rmse.groupby(["metric","model","scenario","pipeline"]).mean()
