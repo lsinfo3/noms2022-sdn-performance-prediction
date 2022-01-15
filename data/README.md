@@ -1,7 +1,7 @@
 # Feature Description
 
 ## General Information
-- *Network*, *Configuration*, *Run*, *Repetition* are irrelevant for the predcition and are merely identifiers for each simulation
+- *Network*, *Configuration*, *Run*, *Repetition* are irrelevant for the prediction and are merely identifiers for each simulation
 
 ## Dynamic Performance Metrics
 - The metrics we want to predict, mean and maximum value
@@ -36,7 +36,7 @@
 		- *EdgeDistinctPaths*: Statistics over edge-distinct paths for all node-pairs
 		- *NodeDisjointPaths*: Statistics over node-disjoint paths for all node-pairs
 		- *LocalClusteringCoefficient*: Statistics over degree of meshing between neighbours of a node
-		- *NodeExpansion*: Calculates the fraction of nodes within a fixed ballradius, for four different values dependent on (unweighted) diameter, last expansion should always be 1
+		- *NodeExpansion*: Calculates the fraction of nodes within a fixed ballradius, for four different values dependent on (unweighted) *Diameter*, last expansion should always be 1
 	- Global/graph-based metrics (single value each)
 		- *GraphEccentricity*: Average *NodeEccentricity*, weighted and unweighted
 		- *Radius*: Minimum *NodeEccentricity*, weighted and unweighted
