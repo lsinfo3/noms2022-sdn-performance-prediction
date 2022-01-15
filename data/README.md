@@ -47,7 +47,7 @@
 		- *VertexConnectivity*: Equivalent to maximum *NodeDisjointPaths*
 		- *VertexPersistence*:  Equivalent to maximum *NodeDisjointPaths* >= *Diameter*
 		- *EdgeConnectivity*: Equivalent to maximum *EdgeDistinctPaths* 
-		- *EdgeConnectivity*: Equivalent to maximum *EdgeDistinctPaths*  >= *Diameter* 
+		- *EdgePersistence*: Equivalent to maximum *EdgeDistinctPaths*  >= *Diameter* 
 		- *GlobalClusteringCoefficient*: Equivalent to average *LocalClusteringCoefficient*
 		- *GraphExpansion*: Equivalent to average *NodeExpansion* for all four values
 		- *RichClubCoefficient*: For four values dependent on number of nodes contained in the rich-club, a rich-club only contains nodes of a certain degree or higher
