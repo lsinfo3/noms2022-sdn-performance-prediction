@@ -23,7 +23,7 @@
 
 ## Static topology metrics
 - These metrics are always the same for a network and persists through different configurations
-- For full mathmetical explanations see the paper *"Classification of graph metrics"* by Hernández and Van Mieghem, also cited in our paper in the dataset section
+- For full mathmetical explanations for some of the more complex metrics, see the paper *"Classification of graph metrics"* by Hernández and Van Mieghem, also cited in our paper in the dataset section
 	- Local/node-based metrics (+ various statistical measures each [mean, min, max, median, mode, std, var, varcoeff, skew, kurt])
 		- *HopCount*: Statistics over shortest path lengths
 		- *E2EL*: Basically weighted *HopCount* with latency, End-to-End delay of all paths between all switches on a path, includes the processing delay at switches and the propagation delay inbetween them
@@ -36,7 +36,7 @@
 		- *EdgeDistinctPaths*: Statistics over edge-distinct paths for all node-pairs
 		- *NodeDisjointPaths*: Statistics over node-disjoint paths for all node-pairs
 		- *LocalClusteringCoefficient*: Statistics over degree of meshing between neighbours of a node
-		- *NodeExpansion*: Calculates the fraction of nodes within a fixed ballradius, for four different values dependent on (unweighted) diameter, last expansion should always be 1, 
+		- *NodeExpansion*: Calculates the fraction of nodes within a fixed ballradius, for four different values dependent on (unweighted) diameter, last expansion should always be 1
 	- Global/graph-based metrics (single value each)
 		- *GraphEccentricity*: Average *NodeEccentricity*, weighted and unweighted
 		- *Radius*: Minimum *NodeEccentricity*, weighted and unweighted
