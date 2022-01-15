@@ -17,9 +17,9 @@
 	- *SwitchMappingEntropy*: Entropy of switch mappings as a measure of mapping-balance
 	- Various delays (+ various statistical measures each [mean, min, max, median, mode, std, var, varcoeff, skew, kurt])
 		- Include the processing delay at switches and the propagation delay inbetween them
-		- *C2SL* Controller-to-Switch Delay
-		- *C2CL* Controller-to-Controller Delay
-		- *C2RL* Controller-to-Root Delay (only meaningful for Kandoo, is dropped during training for HyperFlow)
+		- *C2SL*: Controller-to-Switch Delay
+		- *C2CL*: Controller-to-Controller Delay
+		- *C2RL*: Controller-to-Root Delay (only meaningful for Kandoo, is dropped during training for HyperFlow)
 
 ## Static topology metrics
 - These metrics are always the same for a network and persists through different configurations
