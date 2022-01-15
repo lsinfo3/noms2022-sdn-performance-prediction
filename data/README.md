@@ -21,8 +21,8 @@
 		- *C2CL*: Controller-to-Controller Delay
 		- *C2RL*: Controller-to-Root Delay (only meaningful for Kandoo, is dropped during training for HyperFlow)
 
-## Static topology metrics
-- These metrics are always the same for a network and persists through different configurations
+## Static Topology Metrics
+- These metrics are always the same for a network and persist through different configurations
 - For full mathemetical explanations for some of the more complex metrics, see the paper *"Classification of graph metrics"* by Hernández and Van Mieghem, also cited in our paper in the dataset section
 	- Local/node-based metrics (+ various statistical measures each [mean, min, max, median, mode, std, var, varcoeff, skew, kurt])
 		- *HopCount*: Statistics over shortest path lengths
