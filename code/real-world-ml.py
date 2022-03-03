@@ -22,7 +22,7 @@ from scipy.cluster import hierarchy
 from collections import defaultdict
 from sklearn.base import BaseEstimator, TransformerMixin
 
-# adapted from https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html
+# adapted from https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html, so: Copyright (c) 2007-2021 The scikit-learn developers. All rights reserved.
 class MulticollinearityFilter(BaseEstimator, TransformerMixin):
     def __init__(self, threshold):
         self.threshold = threshold
@@ -37,7 +37,7 @@ class MulticollinearityFilter(BaseEstimator, TransformerMixin):
         cluster_id_to_feature_ids = defaultdict(list)
         for idx, cluster_id in enumerate(cluster_ids):
                 cluster_id_to_feature_ids[cluster_id].append(idx)
-        self.selected_features = list(X_df.columns[[v[0] for v in cluster_id_to_feature_ids.values()]])
+        self.selected_features = list(X_df.columns[[v[0] for v in cluster_id_to_feature_ids.values()]])       
         return self 
     
     def transform(self, X, y = None ):
@@ -47,7 +47,7 @@ class MulticollinearityFilter(BaseEstimator, TransformerMixin):
     
 archs = ["HF"]
 #archs = ["KN"]
-pipes = ["baseline","cluster_kbest","kbest_cluster","pca","pca_kbest","kbest_pca"]
+pipes = ["cluster_kbest","kbest_cluster","pca","pca_kbest","kbest_pca"]
 scenarios = ["N"]
 #models = ["DT","AB","RF"]
 models = ["DT"]
@@ -62,7 +62,7 @@ for arch, scenario, model, pipe, metric in z:
         df = pd.read_csv('../data/data_HF.csv', sep=";").fillna(value=-1)
         df = df[df.columns.drop(list(df.filter(regex='C2RL')))]
        
-    results_path = "../data/results_test/"+arch+"_new_"+model+"_"+ scenario+"_"+pipe
+    results_path = "../data/results/"+arch+"_"+model+"_"+ scenario+"_"+pipe
     Path(results_path).mkdir(parents=True, exist_ok=True)
      
     

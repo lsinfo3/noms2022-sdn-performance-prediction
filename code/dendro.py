@@ -26,7 +26,7 @@ X = df.drop(df.iloc[:, 0:10], axis=1)
 X2 = df.drop(df.iloc[:, 0:10], axis=1)
 fig, (ax1) = plt.subplots(1, figsize=(12, 3))
 
-# adapted from https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html
+# adapted from https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html, so: Copyright (c) 2007-2021 The scikit-learn developers. All rights reserved.
 corr = spearmanr(X2).correlation
 corr_linkage = hierarchy.ward(corr)
  
