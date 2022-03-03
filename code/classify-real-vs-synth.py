@@ -82,6 +82,7 @@ for train_inds, test_inds in cv_outer.split(X, y, groups):
     precisions_0.append(precision_score(y_test, y_pred, pos_label=0))
     accuracies.append(accuracy_score(y_test, y_pred))
 
+    # The following is adjusted from https://stackoverflow.com/questions/40245277/visualize-feature-selection-in-descending-order-with-selectkbest
         
     ##################################################
     ### Ranking of Feature Selection (SelectKBest) ###
