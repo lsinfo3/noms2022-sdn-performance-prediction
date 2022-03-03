@@ -18,7 +18,7 @@ from pathlib import Path
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 
-arch = "HF"
+arch = "KN"
 if (arch == "KN"):
     df = pd.read_csv('../data/data_KN.csv', sep=";").fillna(value=-1)
 if (arch == "HF"):

@@ -15,7 +15,7 @@ models = ["DT","AB","RF"]
 metrics = ["Mean_RTT", "Max_RTT", "Mean_SyncTraffic", "Max_SyncTraffic", "Mean_ControlPlaneTraffic", "Max_ControlPlaneTraffic"]
 pipelines = ["_baseline","_cluster_kbest","_kbest_cluster","_pca","_pca_kbest","_kbest_pca"]
 
-arch = "KN"
+arch = "HF"
 
 results_mae = pd.DataFrame(columns=["metric", "model","scenario","pipeline","mae"])
 z = itertools.product(models,scenarios, metrics, pipelines)

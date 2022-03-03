@@ -13,7 +13,7 @@ import numpy as np
 arch = "KN"
 model = "RF"
 scenario = "N"
-metric = "Max_RTT"
+metric = "Mean_RTT"
 features = pd.read_csv("../data/results/"+arch+"_"+model+"_"+ scenario+"_baseline/features_"+metric+".csv",index_col=0)
 scores = pd.read_csv("../data/results/"+arch+"_"+model+"_"+ scenario+"_baseline/featureimportances_"+metric+".csv",index_col=0)
 for i in range (0,5):
