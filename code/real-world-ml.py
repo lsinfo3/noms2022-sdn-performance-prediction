@@ -22,7 +22,7 @@ from scipy.cluster import hierarchy
 from collections import defaultdict
 from sklearn.base import BaseEstimator, TransformerMixin
 
-# adapted from https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html, so: Copyright (c) 2007-2021 The scikit-learn developers. All rights reserved.
+# adapted from https://scikit-learn.org/0.24/auto_examples/inspection/plot_permutation_importance_multicollinear.html, so: Copyright (c) 2007-2021 The scikit-learn developers. All rights reserved.
 class MulticollinearityFilter(BaseEstimator, TransformerMixin):
     def __init__(self, threshold):
         self.threshold = threshold
